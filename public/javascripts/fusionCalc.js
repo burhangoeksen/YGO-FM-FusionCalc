@@ -100,9 +100,10 @@ function findFusions() {
                 for (let index = 0; index < cards.length; index++) {
                     var card3 = cards[index];
                     
+                    // TODO: ignore already used card here
                     var nestedFusionResult = nestedFusion.find(f => f.card === card3.Id)
 
-                    if(_test_) {
+                    if(nestedFusionResult) {
                         fuses.push({card1: getCardById(fusion.result), card2: card3, result: getCardById(nestedFusionResult.result)})
                     }
                 }
