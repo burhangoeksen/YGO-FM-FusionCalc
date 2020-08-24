@@ -33,11 +33,10 @@
     "type": "git",
     "url": "git://github.com/typicaljoe/taffydb.git"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "jslint": "^0.9.3",
-    "nodeunit": "^0.9.1",
-    "uglifyjs": "^2.4.10"
+    "jslint": "^0.12.1",
+    "nodeunit": "^0.9.5",
+    "uglifyjs": "^2.4.11"
   }
 }

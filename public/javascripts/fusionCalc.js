@@ -16,9 +16,9 @@ for (i = 1; i <= 5; i++) {
 // Creates a div for each fusion
 function fusesToHTML(fuselist) {
     return fuselist.map(function(fusion) {
-        var res = "<div class='result-div'>Input: " + fusion.card1.Name + "<br>Input: " + fusion.card2.Name;
+        var res = "<div class='result-div'>Input: " + fusion.card1.Name + ' ' + fusion.card1.Id + "<br>Input: " + fusion.card2.Name + ' ' + fusion.card2.Id;
         if (fusion.result) { // Equips and Results don't have a result field
-            res += "<br>Result: " + fusion.result.Name;
+            res += "<br>Result: " + fusion.result.Name + ' ' + fusion.result.Id;
             if (isMonster(fusion.result)) {
                 res += " " + formatStats(fusion.result.Attack, fusion.result.Defense);
             } else {
@@ -95,6 +95,17 @@ function findFusions() {
             var card2 = cards[j];
             var fusion = card1Fuses.find(f => f.card === card2.Id);
             if (fusion) {
+
+                var nestedFusion = fusionsList[fusion.result]
+                for (let index = 0; index < cards.length; index++) {
+                    var card3 = cards[index];
+                    
+                    var nestedFusionResult = nestedFusion.find(f => f.card === card3.Id)
+
+                    if(_test_) {
+                        fuses.push({card1: getCardById(fusion.result), card2: card3, result: getCardById(nestedFusionResult.result)})
+                    }
+                }
                 fuses.push({card1: card1, card2: card2, result: getCardById(fusion.result)});
             }
             var equip = card1Equips.find(e => e === card2.Id);
@@ -110,6 +121,7 @@ function findFusions() {
     outputRight.innerHTML = "<h2 class='center'>Equips:</h2>";
     outputRight.innerHTML += fusesToHTML(equips);
 }
+
 
 function resultsClear() {
     outputLeft.innerHTML = "";
